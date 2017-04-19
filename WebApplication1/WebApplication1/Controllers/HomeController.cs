@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models.Bus;
 
 namespace WebApplication1.Controllers
 {
@@ -10,7 +11,8 @@ namespace WebApplication1.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var DsSanPham = SanPhamBus.DanhSach();
+            return View(DsSanPham);
         }
 
         public ActionResult About()
@@ -24,6 +26,10 @@ namespace WebApplication1.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Cart()
+        {
             return View();
         }
     }
