@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileShopConnection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,65 +24,113 @@ namespace WebApplication1.Controllers
             return View(ChiTiet);
         }
 
+        public ActionResult QuanLy()
+        {
+            var DsSanPham = SanPhamBus.DanhSach();
+            return View(DsSanPham);
+        }
+
         // GET: SanPham/Create
         public ActionResult Create()
         {
+            List<CustomDropDownList> BiXoa = new List<CustomDropDownList>()
+            {
+                new CustomDropDownList {Text="Không Xóa",Value=0 },
+                new CustomDropDownList {Text="Xóa",Value=1 }
+            };
+            List<CustomDropDownList> TinhTrang = new List<CustomDropDownList>()
+            {
+                new CustomDropDownList {Text="Còn Hàng",Value=1 },
+                new CustomDropDownList {Text="Hết Hàng",Value=0 }
+            };
+            ViewBag.TinhTrang = new SelectList(TinhTrang, "Value", "Text");
+            ViewBag.BiXoa = new SelectList(BiXoa, "Value", "Text");
+            ViewBag.MaHang = new SelectList(HangBus.DanhSach(), "MaHang", "TenHang");
+            ViewBag.MaLoai = new SelectList(LoaiBus.DanhSach(), "MaLoai", "TenLoai");
             return View();
         }
 
         // POST: SanPham/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(SanPham sp)
         {
-            try
+            if (HttpContext.Request.Files.Count > 0)
             {
-                // TODO: Add insert logic here
+                var hpf = HttpContext.Request.Files[0];
+                if (hpf.ContentLength > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    string fullPathWithFileName = "/ShopOnline/img/" + fileName + ".jpg";
+                    hpf.SaveAs(Server.MapPath(fullPathWithFileName));
+                    sp.HinhAnh = fileName + ".jpg";
 
-                return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            SanPhamBus.Them(sp);
+            return RedirectToAction("QuanLy");
         }
 
         // GET: SanPham/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var db = new MobileShopConnectionDB();
+            var rs = db.SingleOrDefault<MobileShopConnection.SanPham>("select * from sanpham where MaSP=@0", id);
+            List<CustomDropDownList> BiXoa = new List<CustomDropDownList>()
+            {
+                new CustomDropDownList {Text="Không Xóa",Value=0 },
+                new CustomDropDownList {Text="Xóa",Value=1 }
+            };
+            List<CustomDropDownList> TinhTrang = new List<CustomDropDownList>()
+            {
+                new CustomDropDownList {Text="Còn Hàng",Value=1 },
+                new CustomDropDownList {Text="Hết Hàng",Value=0 }
+            };
+            ViewBag.TinhTrang = new SelectList(TinhTrang, "Value", "Text");
+            ViewBag.BiXoa = new SelectList(BiXoa, "Value", "Text");
+            ViewBag.MaHang = new SelectList(HangBus.DanhSach(), "MaHang", "TenHang");
+            ViewBag.MaLoai = new SelectList(LoaiBus.DanhSach(), "MaLoai", "TenLoai");
+            return View(rs);
         }
 
         // POST: SanPham/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, SanPham sp)
         {
-            try
-            {
                 // TODO: Add update logic here
+                if (HttpContext.Request.Files.Count > 0)
+                {
+                    var hpf = HttpContext.Request.Files[0];
+                    if (hpf.ContentLength > 0)
+                    {
+                        string fileName = Guid.NewGuid().ToString();
+                        string fullPathWithFileName = "/ShopOnline/img/" + fileName + ".jpg";
+                        hpf.SaveAs(Server.MapPath(fullPathWithFileName));
+                        sp.HinhAnh = fileName + ".jpg";
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                    }
+                }
+                SanPhamBus.Sua(sp);
+                return RedirectToAction("QuanLy");
+            
         }
 
         // GET: SanPham/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var db = new MobileShopConnectionDB();
+            var rs = db.SingleOrDefault<MobileShopConnection.SanPham>("select * from sanpham where MaSP=@0", id);
+            return View(rs);
         }
 
         // POST: SanPham/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, SanPham sp)
         {
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                SanPhamBus.Xoa(id);
+                return RedirectToAction("QuanLy");
             }
             catch
             {
