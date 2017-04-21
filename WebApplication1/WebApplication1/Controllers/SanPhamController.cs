@@ -11,9 +11,9 @@ namespace WebApplication1.Controllers
     public class SanPhamController : Controller
     {
         // GET: SanPham
-        public ActionResult Index()
+        public ActionResult Index(int Page=1)
         {
-            var DsSanPham = SanPhamBus.DanhSach();
+            var DsSanPham = SanPhamBus.PageDanhSach(Page,8);
             return View(DsSanPham);
         }
 
@@ -63,7 +63,6 @@ namespace WebApplication1.Controllers
                     string fullPathWithFileName = "/ShopOnline/img/" + fileName + ".jpg";
                     hpf.SaveAs(Server.MapPath(fullPathWithFileName));
                     sp.HinhAnh = fileName + ".jpg";
-
                 }
             }
             SanPhamBus.Them(sp);
@@ -96,21 +95,27 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Edit(int id, SanPham sp)
         {
-                // TODO: Add update logic here
-                if (HttpContext.Request.Files.Count > 0)
+            // TODO: Add update logic here
+            var db = new MobileShopConnectionDB();
+            var rs = db.SingleOrDefault<MobileShopConnection.SanPham>("select HinhAnh from sanpham where MaSP=@0", id);
+            if (HttpContext.Request.Files.Count > 0)
+            {
+                var hpf = HttpContext.Request.Files[0];
+                if (hpf.ContentLength > 0)
                 {
-                    var hpf = HttpContext.Request.Files[0];
-                    if (hpf.ContentLength > 0)
-                    {
-                        string fileName = Guid.NewGuid().ToString();
-                        string fullPathWithFileName = "/ShopOnline/img/" + fileName + ".jpg";
-                        hpf.SaveAs(Server.MapPath(fullPathWithFileName));
-                        sp.HinhAnh = fileName + ".jpg";
+                    string fileName = Guid.NewGuid().ToString();
+                    string fullPathWithFileName = "/ShopOnline/img/" + fileName + ".jpg";
+                    hpf.SaveAs(Server.MapPath(fullPathWithFileName));
+                    sp.HinhAnh = fileName + ".jpg";
 
-                    }
                 }
-                SanPhamBus.Sua(sp);
-                return RedirectToAction("QuanLy");
+                else
+                {
+                    sp.HinhAnh = rs.HinhAnh;
+                }
+            }
+            SanPhamBus.Sua(sp);
+            return RedirectToAction("QuanLy");
             
         }
 

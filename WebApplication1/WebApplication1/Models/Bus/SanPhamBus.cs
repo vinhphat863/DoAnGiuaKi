@@ -14,6 +14,11 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Query<MobileShopConnection.SanPham>("select * from SanPham");
         }
+        public static Page<SanPham> PageDanhSach(int PageNumber, int ItemPerPage)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham");
+        }
         public static MobileShopConnection.SanPham ChiTiet(int id)
         {
             var db = new MobileShopConnectionDB();

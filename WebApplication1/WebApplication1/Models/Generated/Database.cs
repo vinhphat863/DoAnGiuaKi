@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PetaPoco;
+using System.Web.Mvc;
 
 namespace MobileShopConnection
 {
@@ -134,32 +135,6 @@ namespace MobileShopConnection
 	
 
 
-
-    
-
-	[TableName("dbo.ChiTietSP")]
-
-
-
-
-	[ExplicitColumns]
-
-    public partial class ChiTietSP : MobileShopConnectionDB.Record<ChiTietSP>  
-    {
-
-
-
-		[Column] public int? MaSP { get; set; }
-
-
-
-
-
-		[Column("ChiTietSP")] public string _ChiTietSP { get; set; }
-
-
-
-	}
 
     
 
@@ -390,6 +365,12 @@ namespace MobileShopConnection
 
 
 		[Column] public int? BiXoa { get; set; }
+
+
+
+
+        [AllowHtml]
+		[Column] public string ChiTiet { get; set; }
 
 
 
