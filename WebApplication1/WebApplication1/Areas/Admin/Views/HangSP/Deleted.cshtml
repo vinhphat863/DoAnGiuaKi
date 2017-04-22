@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MobileShopConnection.HangSP>
+
+@{
+    ViewBag.Title = "Deleted";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminMainLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Hãng Sản Phẩm Đã Xóa
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="@Url.Action("Index","HangSP")">Hãng Sản Phẩm</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-file"></i> Hãng Sản Phẩm Đã Xóa
+                </li>
+            </ol>
+            <table class="table">
+                <tr>
+                    <th>
+                        Mã Hãng
+                    </th>
+                    <th>
+                        Tên Hãng
+                    </th>
+                    <th>
+                        Bị Xóa
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BiXoa)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.MaHang }) |
+                            @Html.ActionLink("Restore", "Restore", new { id = item.MaHang })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+

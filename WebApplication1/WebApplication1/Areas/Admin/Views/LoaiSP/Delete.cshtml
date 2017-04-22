@@ -1,0 +1,70 @@
+﻿@model MobileShopConnection.LoaiSP
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminMainLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Xoá Loại Sản Phẩm
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="@Url.Action("Index","LoaiSP")">Loại Sản Phẩm</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-file"></i> Xóa Loại Sản Phẩm
+                </li>
+            </ol>
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <h4>LoaiSP</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Mã Loại
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaLoai)
+                    </dd>
+
+                    <dt>
+                        Tên Loại
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenLoai)
+                    </dd>
+
+                    <dt>
+                       Bị Xóa
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.BiXoa)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+

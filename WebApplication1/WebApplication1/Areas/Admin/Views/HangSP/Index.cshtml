@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MobileShopConnection.HangSP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminMainLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                @Html.ActionLink("Create New", "Create")   |   
+                @Html.ActionLink("Hãng Đã Xóa", "Deleted")
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>
+                            Mã Hãng
+                        </th>
+                        <th>
+                            Tên Hãng
+                        </th>
+                        <th>
+                            Bị Xóa
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BiXoa)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.MaHang }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.MaHang })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    <!-- /.row -->
+    </div>
+</div>
+
+

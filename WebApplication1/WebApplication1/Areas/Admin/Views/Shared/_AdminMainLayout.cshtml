@@ -141,19 +141,17 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="@Url.Action("Index","DashBoard")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Quản Lý Sản Phẩm <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="@Url.Action("Index","SanPham")">Chi Tiết</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Deleted","SanPham")">Sản Phẩm Đã Xóa</a>
-                            </li>
-                        </ul>
+                        <a href="@Url.Action("Index","SanPham")"><i class="fa fa-fw fa-wrench"></i> Quản Lý Sản Phẩm</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","HangSP")"><i class="fa fa-fw fa-wrench"></i> Quản Lý Hãng</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","LoaiSP")"><i class="fa fa-fw fa-wrench"></i> Quản Lý Loại Sản Phẩm</a>
                     </li>
                 </ul>
             </div>

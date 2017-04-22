@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MobileShopConnection;
+using PetaPoco;
 
 namespace WebApplication1.Models.Bus
 {
@@ -11,7 +12,35 @@ namespace WebApplication1.Models.Bus
         public static IEnumerable<MobileShopConnection.HangSP> DanhSach()
         {
             var db = new MobileShopConnectionDB();
-            return db.Query<MobileShopConnection.HangSP>("select * from HangSP where BiXoa<>1");
+            return db.Query<MobileShopConnection.HangSP>("select * from HangSP where BiXoa != 1");
+        }
+        public static IEnumerable<MobileShopConnection.HangSP> DanhSachDaXoa()
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Query<MobileShopConnection.HangSP>("select * from HangSP where BiXoa = 1");
+        }
+        public static void Them(MobileShopConnection.HangSP HangSp)
+        {
+            var db = new MobileShopConnectionDB();
+            db.Insert(HangSp);
+        }
+        public static void Xoa(int id)
+        {
+            var db = new MobileShopConnectionDB();
+            var rs = Sql.Builder.Append("Exec XoaHangSP @0", id);
+            db.Execute(rs);
+        }
+        public static void Sua(MobileShopConnection.HangSP HangSp)
+        {
+            var db = new MobileShopConnectionDB();
+            db.Update(HangSp);
+        }
+
+        public static void KhoiPhuc(int id)
+        {
+            var db = new MobileShopConnectionDB();
+            var rs = Sql.Builder.Append("Exec KhoiPhucHangSP @0", id);
+            db.Execute(rs);
         }
     }
 }
