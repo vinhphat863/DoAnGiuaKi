@@ -195,10 +195,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +222,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\AdminTemplate\blank-page.html" />
+    <Content Include="Areas\Admin\AdminTemplate\bootstrap-elements.html" />
+    <Content Include="Areas\Admin\AdminTemplate\bootstrap-grid.html" />
+    <Content Include="Areas\Admin\AdminTemplate\charts.html" />
+    <Content Include="Areas\Admin\AdminTemplate\forms.html" />
+    <Content Include="Areas\Admin\AdminTemplate\index-rtl.html" />
+    <Content Include="Areas\Admin\AdminTemplate\index.html" />
+    <Content Include="Areas\Admin\AdminTemplate\tables.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -236,6 +247,16 @@
     </Content>
     <Content Include="Models\Generated\PetaPoco.Generator.ttinclude" />
     <Content Include="Models\Generated\PetaPoco.Core.ttinclude" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\AdminTemplate\LICENSE" />
+    <Content Include="Areas\Admin\AdminTemplate\README.md" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminMainLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Deleted.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -285,15 +306,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Shared\_ProductsLayout.cshtml" />
-    <Content Include="Views\SanPham\Details.cshtml" />
-    <Content Include="Views\SanPham\Index.cshtml" />
-    <Content Include="Views\SanPham\Create.cshtml" />
-    <Content Include="Views\SanPham\Delete.cshtml" />
-    <Content Include="Views\SanPham\QuanLy.cshtml" />
-    <Content Include="Views\SanPham\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\AdminTemplate\css\" />
+    <Folder Include="Areas\Admin\AdminTemplate\font-awesome\" />
+    <Folder Include="Areas\Admin\AdminTemplate\fonts\" />
+    <Folder Include="Areas\Admin\AdminTemplate\js\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Admin\" />
     <Folder Include="ShopOnline\" />
   </ItemGroup>
   <ItemGroup>

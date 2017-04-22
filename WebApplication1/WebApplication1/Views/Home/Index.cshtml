@@ -37,7 +37,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="@Url.Action("Index", "SanPham")">Shop page</a></li>
+                    <li><a href="@Url.Action("Index", "Products")">Shop page</a></li>
                     <li><a href="@Url.Action("Cart", "Home")">Cart</a></li>
                     <li><a href="@Url.Action("Checkout", "Home")">Checkout</a></li>
                     <li><a href="#">Category</a></li>
@@ -145,11 +145,11 @@
                                     <img src="~/ShopOnline/img/@item.HinhAnh" alt="">
                                     <div class="product-hover">
                                         <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="@Url.Action("Details", "SanPham",new { id = @item.MaSP })" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="@Url.Action("Details", "Products",new { id = @item.MaSP })" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
 
-                                <h2><a href="@Url.Action("Details", "SanPham",new { id = @item.MaSP })">@item.TenSP</a></h2>
+                                <h2><a href="@Url.Action("Details", "Products",new { id = @item.MaSP })">@item.TenSP</a></h2>
 
                                 <div class="product-carousel-price">
                                     <ins>@item.GiaBan VNĐ</ins> <del>$100.00</del>

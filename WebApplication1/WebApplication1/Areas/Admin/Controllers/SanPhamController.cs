@@ -6,31 +6,36 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models.Bus;
 
-namespace WebApplication1.Controllers
+namespace WebApplication1.Areas.Admin.Controllers
 {
     public class SanPhamController : Controller
     {
-        // GET: SanPham
-        public ActionResult Index(int Page=1)
-        {
-            var DsSanPham = SanPhamBus.PageDanhSach(Page,8);
-            return View(DsSanPham);
-        }
-
-        // GET: SanPham/Details/5
-        public ActionResult Details(int id)
-        {
-            var ChiTiet = SanPhamBus.ChiTiet(id);
-            return View(ChiTiet);
-        }
-
-        public ActionResult QuanLy()
+        // GET: Admin/SanPham
+        public ActionResult Index()
         {
             var DsSanPham = SanPhamBus.DanhSach();
             return View(DsSanPham);
         }
 
-        // GET: SanPham/Create
+        // GET: Admin/SanPham/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        public ActionResult Deleted()
+        {
+            var DsSanPham = SanPhamBus.DanhSachDaXoa();
+            return View(DsSanPham);
+        }
+
+        public ActionResult Restore(int id)
+        {
+            SanPhamBus.KhoiPhuc(id);
+            return RedirectToAction("Deleted");
+        }
+
+        // GET: Admin/SanPham/Create
         public ActionResult Create()
         {
             List<CustomDropDownList> BiXoa = new List<CustomDropDownList>()
@@ -50,7 +55,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        // POST: SanPham/Create
+        // POST: Admin/SanPham/Create
         [HttpPost]
         public ActionResult Create(SanPham sp)
         {
@@ -66,10 +71,10 @@ namespace WebApplication1.Controllers
                 }
             }
             SanPhamBus.Them(sp);
-            return RedirectToAction("QuanLy");
+            return RedirectToAction("Index");
         }
 
-        // GET: SanPham/Edit/5
+        // GET: Admin/SanPham/Edit/5
         public ActionResult Edit(int id)
         {
             var db = new MobileShopConnectionDB();
@@ -91,11 +96,10 @@ namespace WebApplication1.Controllers
             return View(rs);
         }
 
-        // POST: SanPham/Edit/5
+        // POST: Admin/SanPham/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, SanPham sp)
         {
-            // TODO: Add update logic here
             var db = new MobileShopConnectionDB();
             var rs = db.SingleOrDefault<MobileShopConnection.SanPham>("select HinhAnh from sanpham where MaSP=@0", id);
             if (HttpContext.Request.Files.Count > 0)
@@ -115,11 +119,10 @@ namespace WebApplication1.Controllers
                 }
             }
             SanPhamBus.Sua(sp);
-            return RedirectToAction("QuanLy");
-            
+            return RedirectToAction("Index");
         }
 
-        // GET: SanPham/Delete/5
+        // GET: Admin/SanPham/Delete/5
         public ActionResult Delete(int id)
         {
             var db = new MobileShopConnectionDB();
@@ -127,15 +130,15 @@ namespace WebApplication1.Controllers
             return View(rs);
         }
 
-        // POST: SanPham/Delete/5
+        // POST: Admin/SanPham/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, SanPham sp)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
                 SanPhamBus.Xoa(id);
-                return RedirectToAction("QuanLy");
+                return RedirectToAction("Index");
             }
             catch
             {

@@ -12,12 +12,19 @@ namespace WebApplication1.Models.Bus
         public static IEnumerable<MobileShopConnection.SanPham> DanhSach()
         {
             var db = new MobileShopConnectionDB();
-            return db.Query<MobileShopConnection.SanPham>("select * from SanPham");
+            return db.Query<MobileShopConnection.SanPham>("select * from SanPham where BiXoa != 1");
         }
+
+        public static IEnumerable<MobileShopConnection.SanPham> DanhSachDaXoa()
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Query<MobileShopConnection.SanPham>("select * from SanPham where BiXoa = 1");
+        }
+
         public static Page<SanPham> PageDanhSach(int PageNumber, int ItemPerPage)
         {
             var db = new MobileShopConnectionDB();
-            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham");
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where BiXoa != 1");
         }
         public static MobileShopConnection.SanPham ChiTiet(int id)
         {
@@ -39,6 +46,13 @@ namespace WebApplication1.Models.Bus
         {
             var db = new MobileShopConnectionDB();
             db.Update(sp);
+        }
+
+        public static void KhoiPhuc(int id)
+        {
+            var db = new MobileShopConnectionDB();
+            var rs = Sql.Builder.Append("Exec KhoiPhucSanPham @0", id);
+            db.Execute(rs);
         }
     }
 }
