@@ -18,7 +18,16 @@ namespace WebApplication1.Models.Bus
         public static MobileShopConnection.LoaiSP ChiTiet(int id)
         {
             var db = new MobileShopConnectionDB();
-            return db.SingleOrDefault<MobileShopConnection.LoaiSP>("select * from LoaiSP where MaLoai=@0 and BiXoa != 1", id);
+            return db.SingleOrDefault<MobileShopConnection.LoaiSP>("select * from LoaiSP where MaLoai=@0", id);
+        }
+
+        public static LoaiSP ChiTietViewModel(int? id)
+        {
+
+            using (var db = new MobileShopConnectionDB())
+            {
+                return db.Query<MobileShopConnection.LoaiSP>("select * from LoaiSP where MaLoai = @0", id).FirstOrDefault();
+            }
         }
 
         public static IEnumerable<MobileShopConnection.LoaiSP> DanhSachDaXoa()

@@ -20,80 +20,76 @@
                     <i class="fa fa-file"></i> Sản Phẩm Đã Xóa
                 </li>
             </ol>
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MaSP)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TenSP)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MaHang)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MaLoai)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.HinhAnh)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TinhTrang)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.GiaBan)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SoLuong)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BiXoa)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaSP)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TenSP)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaHang)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaLoai)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HinhAnh)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TinhTrang)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.GiaBan)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SoLuong)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BiXoa)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id=item.MaSP }) |
-                            @Html.ActionLink("Details", "Details", new { id=item.MaSP }) |
-                            @Html.ActionLink("Restore", "Restore", new { id = item.MaSP })
-                        </td>
+                        <th>
+                            Mã
+                        </th>
+                        <th>
+                            Tên
+                        </th>
+                        <th>
+                            Mã Hãng
+                        </th>
+                        <th>
+                            Mã Loại
+                        </th>
+                        <th>
+                            Hình Ảnh
+                        </th>
+                        <th>
+                            Tình Trạng
+                        </th>
+                        <th>
+                            Giá Bán
+                        </th>
+                        <th>
+                            Số Lượng
+                        </th>
+                        <th></th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaLoai)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HinhAnh)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TinhTrang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GiaBan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SoLuong)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
+                                @Html.ActionLink("Restore", "Restore", new { id = item.MaSP })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
         </div>
-    </div>
     <!-- /.row -->
+    </div>
 </div>
 
 

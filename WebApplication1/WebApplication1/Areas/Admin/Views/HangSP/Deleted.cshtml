@@ -20,43 +20,38 @@
                     <i class="fa fa-file"></i> Hãng Sản Phẩm Đã Xóa
                 </li>
             </ol>
-            <table class="table">
-                <tr>
-                    <th>
-                        Mã Hãng
-                    </th>
-                    <th>
-                        Tên Hãng
-                    </th>
-                    <th>
-                        Bị Xóa
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaHang)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TenHang)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BiXoa)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.MaHang }) |
-                            @Html.ActionLink("Restore", "Restore", new { id = item.MaHang })
-                        </td>
+                        <th>
+                            Mã Hãng
+                        </th>
+                        <th>
+                            Tên Hãng
+                        </th>
+                        <th></th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenHang)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.MaHang }) |
+                                @Html.ActionLink("Restore", "Restore", new { id = item.MaHang })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
         </div>
-    </div>
     <!-- /.row -->
+    </div>
 </div>
-
 

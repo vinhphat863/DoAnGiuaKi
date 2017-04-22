@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models.Bus;
+using WebApplication1.Models.ViewModel;
 
 namespace WebApplication1.Controllers
 {
@@ -20,8 +21,10 @@ namespace WebApplication1.Controllers
         // GET: SanPham/Details/5
         public ActionResult Details(int id)
         {
-            var ChiTiet = SanPhamBus.ChiTiet(id);
-            return View(ChiTiet);
+            var ChiTietSP = SanPhamBus.ChiTiet(id);
+            var ChiTietLoaiSP = LoaiBus.ChiTietViewModel(ChiTietSP.MaLoai);
+            var ChitTietHangSP = HangBus.ChiTietViewModel(ChiTietSP.MaLoai);
+            return View(new SanPhamViewModel() {LoaiSP=ChiTietLoaiSP,HangSP=ChitTietHangSP,SanPham=ChiTietSP });
         }
     }
 }

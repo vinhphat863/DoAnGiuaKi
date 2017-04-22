@@ -19,6 +19,19 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Query<MobileShopConnection.HangSP>("select * from HangSP where BiXoa = 1");
         }
+        public static MobileShopConnection.HangSP ChiTiet(int id)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.SingleOrDefault<MobileShopConnection.HangSP>("select * from HangSP where MaHang=@0", id);
+        }
+        public static HangSP ChiTietViewModel(int? id)
+        {
+
+            using (var db = new MobileShopConnectionDB())
+            {
+                return db.Query<MobileShopConnection.HangSP>("select * from HangSP where MaHang = @0", id).FirstOrDefault();
+            }
+        }
         public static void Them(MobileShopConnection.HangSP HangSp)
         {
             var db = new MobileShopConnectionDB();

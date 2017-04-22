@@ -1,4 +1,4 @@
-﻿@model MobileShopConnection.SanPham
+﻿@model WebApplication1.Models.ViewModel.SanPhamViewModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -120,16 +120,16 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="product-breadcroumb">
-                        <a href="">Home</a>
-                        <a href="">Category Name</a>
-                        <a href="">Sony Smart TV - 2015</a>
+                        <a href="@Url.Action("Index","Products")">Shop Page</a>
+                        <a href="@Url.Action("Index","Products")">@Model.LoaiSP.TenLoai</a>
+                        <a href="@Url.Action("Index","Products")">@Model.HangSP.TenHang</a>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="product-images">
                                 <div class="product-main-img">
-                                    <img src="~/ShopOnline/img/@Model.HinhAnh" alt="">
+                                    <img src="~/ShopOnline/img/@Model.SanPham.HinhAnh" alt="">
                                 </div>
 
                                 <div class="product-gallery">
@@ -141,9 +141,9 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="product-inner">
-                                <h2 class="product-name">@Model.TenSP</h2>
+                                <h2 class="product-name">@Model.SanPham.TenSP</h2>
                                 <div class="product-inner-price">
-                                    <ins>@Model.GiaBan VNĐ</ins> <del>20.000.000 VNĐ</del>
+                                    <ins>@Model.SanPham.GiaBan VNĐ</ins> <del>20.000.000 VNĐ</del>
                                 </div>
 
                                 <form action="" class="cart">
@@ -165,7 +165,7 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                                             <h2>Product Description</h2>
-                                            @Html.Raw(Model.ChiTiet)
+                                            @Html.Raw(Model.SanPham.ChiTiet)
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <h2>Reviews</h2>

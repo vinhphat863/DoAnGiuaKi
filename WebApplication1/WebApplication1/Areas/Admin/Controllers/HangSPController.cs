@@ -54,8 +54,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/HangSP/Edit/5
         public ActionResult Edit(int id)
         {
-            var db = new MobileShopConnectionDB();
-            var rs = db.SingleOrDefault<MobileShopConnection.HangSP>("select * from HangSP where MaHang=@0", id);
+            var rs = HangBus.ChiTiet(id);
             List<CustomDropDownList> BiXoa = new List<CustomDropDownList>()
             {
                 new CustomDropDownList {Text="Không Xóa",Value=0 },
@@ -84,8 +83,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/HangSP/Delete/5
         public ActionResult Delete(int id)
         {
-            var db = new MobileShopConnectionDB();
-            var rs = db.SingleOrDefault<MobileShopConnection.HangSP>("select * from HangSP where MaHang=@0", id);
+            var rs = HangBus.ChiTiet(id);
             return View(rs);
         }
 

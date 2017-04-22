@@ -20,7 +20,8 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/SanPham/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var ChiTiet = SanPhamBus.ChiTiet(id);
+            return View(ChiTiet);
         }
 
         public ActionResult Deleted()
@@ -77,8 +78,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/SanPham/Edit/5
         public ActionResult Edit(int id)
         {
-            var db = new MobileShopConnectionDB();
-            var rs = db.SingleOrDefault<MobileShopConnection.SanPham>("select * from sanpham where MaSP=@0", id);
+            var rs = SanPhamBus.ChiTiet(id);
             List<CustomDropDownList> BiXoa = new List<CustomDropDownList>()
             {
                 new CustomDropDownList {Text="Không Xóa",Value=0 },
@@ -125,8 +125,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         // GET: Admin/SanPham/Delete/5
         public ActionResult Delete(int id)
         {
-            var db = new MobileShopConnectionDB();
-            var rs = db.SingleOrDefault<MobileShopConnection.SanPham>("select * from sanpham where MaSP=@0", id);
+            var rs = SanPhamBus.ChiTiet(id);
             return View(rs);
         }
 

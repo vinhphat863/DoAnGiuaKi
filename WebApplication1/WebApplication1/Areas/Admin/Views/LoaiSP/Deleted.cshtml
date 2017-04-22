@@ -29,9 +29,6 @@
                         <th>
                             Tên Loại
                         </th>
-                        <th>
-                            Bị Xóa
-                        </th>
                         <th></th>
                     </tr>
 
@@ -43,9 +40,6 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TenLoai)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BiXoa)
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.MaLoai }) |
