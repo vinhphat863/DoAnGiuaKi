@@ -11,9 +11,9 @@ namespace WebApplication1.Areas.Admin.Controllers
     public class HangSPController : Controller
     {
         // GET: Admin/HangSP
-        public ActionResult Index()
+        public ActionResult Index(int Page = 1)
         {
-            var DsHangSP = HangBus.DanhSach();
+            var DsHangSP = HangBus.PageDanhSach(Page, 10);
             return View(DsHangSP);
         }
 
@@ -102,9 +102,9 @@ namespace WebApplication1.Areas.Admin.Controllers
                 return View();
             }
         }
-        public ActionResult Deleted()
+        public ActionResult Deleted(int Page = 1)
         {
-            var DsHangSP = HangBus.DanhSachDaXoa();
+            var DsHangSP = HangBus.PageDanhSachDaXoa(Page,10);
             return View(DsHangSP);
         }
         public ActionResult Restore(int id)

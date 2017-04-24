@@ -11,9 +11,9 @@ namespace WebApplication1.Areas.Admin.Controllers
     public class SanPhamController : Controller
     {
         // GET: Admin/SanPham
-        public ActionResult Index()
+        public ActionResult Index(int Page = 1)
         {
-            var DsSanPham = SanPhamBus.DanhSach();
+            var DsSanPham = SanPhamBus.PageDanhSach(Page, 10);
             return View(DsSanPham);
         }
 
@@ -24,9 +24,9 @@ namespace WebApplication1.Areas.Admin.Controllers
             return View(ChiTiet);
         }
 
-        public ActionResult Deleted()
+        public ActionResult Deleted(int Page = 1)
         {
-            var DsSanPham = SanPhamBus.DanhSachDaXoa();
+            var DsSanPham = SanPhamBus.PageDanhSachDaXoa(Page, 10);
             return View(DsSanPham);
         }
 
@@ -91,8 +91,8 @@ namespace WebApplication1.Areas.Admin.Controllers
             };
             ViewBag.TinhTrang = new SelectList(TinhTrang, "Value", "Text");
             ViewBag.BiXoa = new SelectList(BiXoa, "Value", "Text");
-            ViewBag.MaHang = new SelectList(HangBus.DanhSach(), "MaHang", "TenHang");
-            ViewBag.MaLoai = new SelectList(LoaiBus.DanhSach(), "MaLoai", "TenLoai");
+            ViewBag.MaHang = new SelectList(HangBus.DanhSach(), "MaHang", "TenHang",rs.MaHang);
+            ViewBag.MaLoai = new SelectList(LoaiBus.DanhSach(), "MaLoai", "TenLoai",rs.MaLoai);
             return View(rs);
         }
 

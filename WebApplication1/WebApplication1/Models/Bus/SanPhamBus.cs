@@ -15,10 +15,10 @@ namespace WebApplication1.Models.Bus
             return db.Query<MobileShopConnection.SanPham>("select * from SanPham where BiXoa != 1");
         }
 
-        public static IEnumerable<MobileShopConnection.SanPham> DanhSachDaXoa()
+        public static Page<SanPham> PageDanhSachDaXoa(int PageNumber, int ItemPerPage)
         {
             var db = new MobileShopConnectionDB();
-            return db.Query<MobileShopConnection.SanPham>("select * from SanPham where BiXoa = 1");
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where BiXoa = 1");
         }
 
         public static Page<SanPham> PageDanhSach(int PageNumber, int ItemPerPage)

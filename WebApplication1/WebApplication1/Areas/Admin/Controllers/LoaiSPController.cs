@@ -11,9 +11,9 @@ namespace WebApplication1.Areas.Admin.Controllers
     public class LoaiSPController : Controller
     {
         // GET: Admin/LoaiSP
-        public ActionResult Index()
+        public ActionResult Index(int Page = 1)
         {
-            var DsLoaiSP = LoaiBus.DanhSach();
+            var DsLoaiSP = LoaiBus.PageDanhSach(Page,10);
             return View(DsLoaiSP);
         }
 
@@ -102,9 +102,9 @@ namespace WebApplication1.Areas.Admin.Controllers
                 return View();
             }
         }
-        public ActionResult Deleted()
+        public ActionResult Deleted(int Page = 1)
         {
-            var rs = LoaiBus.DanhSachDaXoa();
+            var rs = LoaiBus.PageDanhSachDaXoa(Page,10);
             return View(rs);
         }
         public ActionResult Restore(int id)

@@ -26,5 +26,6 @@ namespace WebApplication1.Controllers
             var ChitTietHangSP = HangBus.ChiTietViewModel(ChiTietSP.MaLoai);
             return View(new SanPhamViewModel() {LoaiSP=ChiTietLoaiSP,HangSP=ChitTietHangSP,SanPham=ChiTietSP });
         }
+       
     }
 }

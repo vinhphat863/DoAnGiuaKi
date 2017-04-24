@@ -14,7 +14,11 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Query<MobileShopConnection.LoaiSP>("select * from LoaiSP where BiXoa<>1");
         }
-
+        public static Page<LoaiSP> PageDanhSach(int PageNumber, int ItemPerPage)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<LoaiSP>(PageNumber, ItemPerPage, "select * from LoaiSP where BiXoa != 1");
+        }
         public static MobileShopConnection.LoaiSP ChiTiet(int id)
         {
             var db = new MobileShopConnectionDB();
@@ -30,10 +34,10 @@ namespace WebApplication1.Models.Bus
             }
         }
 
-        public static IEnumerable<MobileShopConnection.LoaiSP> DanhSachDaXoa()
+        public static Page<LoaiSP> PageDanhSachDaXoa(int PageNumber, int ItemPerPage)
         {
             var db = new MobileShopConnectionDB();
-            return db.Query<MobileShopConnection.LoaiSP>("select * from LoaiSP where BiXoa = 1");
+            return db.Page<LoaiSP>(PageNumber, ItemPerPage, "select * from LoaiSP where BiXoa = 1");
         }
         public static void Them(MobileShopConnection.LoaiSP LoaiSP)
         {

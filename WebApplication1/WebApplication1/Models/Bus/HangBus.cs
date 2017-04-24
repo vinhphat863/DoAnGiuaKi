@@ -14,10 +14,16 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Query<MobileShopConnection.HangSP>("select * from HangSP where BiXoa != 1");
         }
-        public static IEnumerable<MobileShopConnection.HangSP> DanhSachDaXoa()
+        public static Page<HangSP> PageDanhSach(int PageNumber, int ItemPerPage)
         {
             var db = new MobileShopConnectionDB();
-            return db.Query<MobileShopConnection.HangSP>("select * from HangSP where BiXoa = 1");
+            return db.Page<HangSP>(PageNumber, ItemPerPage, "select * from HangSP where BiXoa != 1");
+        }
+
+        public static Page<MobileShopConnection.HangSP> PageDanhSachDaXoa(int PageNumber, int ItemPerPage)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<HangSP>(PageNumber, ItemPerPage, "select * from HangSP where BiXoa = 1");
         }
         public static MobileShopConnection.HangSP ChiTiet(int id)
         {
