@@ -40,7 +40,14 @@
                     }
                     @for (int i = 1; i <= Model.TotalPages; i++)
                     {
-                        <li>@Html.ActionLink(i.ToString(), "Index", new { Page = i })</li>
+                        if (i == Model.CurrentPage)
+                        {
+                            <li class="active">@Html.ActionLink(i.ToString(), "Index", new { Page = i })</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink(i.ToString(), "Index", new { Page = i })</li>
+                        }
                     }
                     @{
                         if (Model.CurrentPage < Model.TotalPages)
