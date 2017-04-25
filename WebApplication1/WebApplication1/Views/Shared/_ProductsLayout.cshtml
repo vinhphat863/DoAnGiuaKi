@@ -33,7 +33,7 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                            <li><a href="@Url.Action("Index","DashBoard",new { Area = "Admin"})"><i class="fa fa-user"></i> Admin Page</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="@Url.Action("Cart", "Home")"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Checkout</a></li>
@@ -103,8 +103,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                         <li class="active"><a href="@Url.Action("Index", "Products")">Shop page</a></li>
+                        <li><a href="@Url.Action("Index","DashBoard",new { Area = "Admin"})">Admin Page</a></li>
                         <li><a href="@Url.Action("Cart", "Home")">Cart</a></li>
-                        <li><a href="@Url.Action("Checkout", "Home")">Checkout</a></li>
                         <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li>
